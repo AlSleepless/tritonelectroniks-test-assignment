@@ -41,5 +41,12 @@ TEST(Task2, Positive4) {
   testing::internal::CaptureStdout();
   worker->onDone();
   std::string output = testing::internal::GetCapturedStdout();
-  ASSERT_EQ(output, "task Jhon Smit completed.\n");
+  ASSERT_EQ(output, "Task Jhon Smit completed.\n");
+}
+
+TEST(Task2, Positive5) {
+  testing::internal::CaptureStdout();
+  workerMain();
+  std::string output = testing::internal::GetCapturedStdout();
+  ASSERT_EQ(output, "Worker name: idle\nTask IDLE completed.\n");
 }
