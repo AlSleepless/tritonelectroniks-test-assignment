@@ -13,3 +13,9 @@ TEST(Task1, Positive2) {
   std::string res = getFirstUnique(testCase);
   ASSERT_EQ(res, "word2");
 }
+
+TEST(Task1, Negative1) {
+  std::vector<std::string> testCase{"word1", "word1"};
+  std::string res = getFirstUnique(testCase);
+  ASSERT_EQ(res, "");
+}
