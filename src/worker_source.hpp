@@ -22,13 +22,14 @@ struct Worker {
     std::string lc{name};
     std::transform(lc.begin(), lc.end(), lc.begin(),
                    [](unsigned char c) { return std::tolower(c); });
-    return lc;
+    return lc; //! Проблема 1 - возврат ссылки на локальнную переменную
   }
 };
 
+//! Проблема 2 - нет включения необходимой библиотеки "memory" для shared_ptr
 std::shared_ptr<Worker> createWorker(std::string name) {
   auto worker{std::make_shared<Worker>(name)};
-  worker->onDone = [worker]() {
+  worker->onDone = [worker]() { //! Проблема 3 - циклический shared_ptr
     std::cout << "Task " << worker->name << " completed.\n";
   };
 
